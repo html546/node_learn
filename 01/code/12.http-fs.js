@@ -19,6 +19,8 @@ server.on('request', function (req, res) {
             }
         })
     }else if(url === '/vue'){
+        // url :统一资源定位符
+        // 一个url最终其实是要对应到一个资源的
         fs.readFile('./resource/logo.png',function(err,data){
             if(err){
                 res.setHeader('Content-Type','text/plain;charset=utf-8');
