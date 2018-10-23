@@ -1,3 +1,9 @@
+// 1.结合fs发送文件中的数据
+// 2.Content-Type
+//      http://tool.oschina.net/commons
+//      不同的资源对应的Content-Type是不一样的
+//      图片不需要指定编码
+//      一般只为字符数据才制定编码
 var http = require('http');
 var fs = require('fs');
 
