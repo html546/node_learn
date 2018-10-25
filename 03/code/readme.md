@@ -272,6 +272,9 @@ exports.foo = 'bar'
 
 - node package manager
 
+##### npm 网站
+- https://www.npmjs.com
+
 #### package.json
 - 我们建议每一个项目都要有一个`package.json`文件(包描述文件,就像产品的说明书一样),给人踏实的感觉.
 - 这个文件可以通过`npm init`的方式来自动初始化出来.
