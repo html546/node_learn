@@ -12,3 +12,15 @@
 // 核心模块文件已经被编译到了二进制文件中了,我们只需要按照名字来加载就可以了
 // require('fs')
 // require('http')
+
+// 第三方模块
+// 凡是第三方模块都必须通过npm下载
+// 使用的时候就可以通过require('包名')的方式来进行加载才可以使用
+// 不可能有任何一个第三方包和核心模块的名字是一样的
+// 既不是核心模块、也不是路径形式的模块
+// 先找到当前文件所属目录中的node_modules目录
+// node_modules/art-template
+// node_modules/art-template/package.json
+// node_modules/art-template/package.json中的main属性
+// main属性中就记录了art-template的入口模块
+var template = require('art-template');
