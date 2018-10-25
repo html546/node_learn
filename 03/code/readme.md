@@ -251,3 +251,31 @@ exports.foo = 'bar'
     - 核心模块
     - 第三方模块
     - 自己写的模块
+
+
+```javascript
+    a 
+        node_modules
+            art-template
+        foo.js
+    b
+        main.js
+        ../a/foo.js
+        a中的第三方包是不能通过require('art-template')方式来加载
+        require('../a/node_modules/art-template/index.js')
+```
+> 深入浅出Node.js(三):深入Node.js的模块机制
+> 如果想要了解更多底层细节,可以自行参考:《深入浅出Node.js》中的模块系统章节
+
+
+#### npm
+
+- node package manager
+
+#### package.json
+- 我们建议每一个项目都要有一个`package.json`文件(包描述文件,就像产品的说明书一样),给人踏实的感觉.
+- 这个文件可以通过`npm init`的方式来自动初始化出来.
+- 对于咱们目前来讲,最有用的是那个`dependencies`选项,可以用来帮我们保存第三方包的依赖信息.
+- 建议每个项目的根目录下都有一个`package.json`文件
+- 建议执行`npm install`包名的时候都加上`--save`这个选项,目的是用来保存依赖项信息.
+- 如果你的`node_modules`删除了也不用担心,我们只需要`npm install`就会自动把`package.json`中的`dependencies`中所有的依赖项都下载回来.
