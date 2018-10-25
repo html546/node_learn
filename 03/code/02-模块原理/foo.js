@@ -31,9 +31,71 @@ module.exports.add = function(x,y){
 
 // 当一个模块需要导出单个成员的时候
 // 直接给exports赋值是不管用的
-exports = 'hello'
+// exports = 'hello'
+/* exports.a = 123
+
+exports = {}
+
+exports.foo = 'bar'
+
+module.exports.b = 456 */
+// 给exports赋值会断开和module.exports之间的引用
+// 同理,给module.exports重新赋值也会断开
+// 这里导致exports!==module.exports
+/* module.exports = {
+    foo: 'bar'
+} */
+// exports.foo = 'world';
+
+// 但是这里又重新建立两者的引用关系
+/* exports = module.exports
+
+exports.foo = 'hello' */
 
 
 // 谁来require我,谁就得到module.exports
 // 默认在代码的最后有一句:
+//一定要记住,最后return的是module.exports
+// 不是exports
+// 所以你给exports重新赋值不管用
 // return module.exports
+
+// {foo:bar}
+exports.foo = 'bar'
+
+// {foo:bar,a:123}
+module.exports.a = '123'
+
+// exports!==module.exports
+// 最终return的是module.exports
+// 所以无论你exports中的成员是什么都没用
+exports = {
+    a: 456
+}
+// {foo:'haha',a:'123'}
+
+module.exports.foo = 'haha'
+
+// 没关系,混淆你的
+exports.c = 456
+
+// 重新建立了和module.exports之间的引用关系了 
+exports = module.exports
+
+// 由于在上面建立了引用关系,所以这里是生效的
+// {foo:'haha',a:789}
+exports.a = 789
+
+// 前面再牛逼,在这里都全部推翻了,重新赋值
+// 最终得到的是 Function
+module.exports = function () {
+    console.log('hello')
+}
+
+// 真正去使用的时候:
+
+//  导出多个成员:exports.xxx = xxx
+// 导出多个成员也可以:module.exports = {
+
+// }
+//  导出单个成员:module.exports
