@@ -40,10 +40,12 @@
     </div>
     <div class="comments container">
         <ul class="list-group">
+            {{each comments}}
             <li class="list-group-item">
-                123456
-                <span class="pull-right">12314123</span>
+                {{ $value.name }}说:{{ $value.message }}
+                <span class="pull-right">{{ $value.dateTime }}</span>
             </li>
+            {{/each}}
         </ul>
     </div>
 </body>
