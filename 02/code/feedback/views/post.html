@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.css">
 </head>
+
 <body>
-    
+    <div class="header container">
+        <div class="page-header">
+            <h1><a href="/">首页</a> <small>发表评论</small></h1>
+        </div>
+        <hr>
+    </div>
+    <div class="comments container">
+        <form action="" method="get">
+            <div class="form-group">
+                <label for="exampleInputEmail1">你的名字</label>
+                <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Your Name"
+                    minlength="1">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">信息</label>
+                <textarea name="message" id="" rows="5" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">发表</button>
+        </form>
+    </div>
 </body>
+
 </html>

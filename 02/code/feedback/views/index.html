@@ -18,10 +18,34 @@
     等带有 src或者href(link)
     属性标签(具有外链的资源)的时候,浏览器会自动对这些资源发起新的请求
      -->
-     <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.css">
+    <!-- 
+         注意:在服务端中,文件中的路径就不要去写相对路径了。
+         因为这个时候所有的资源都是通过url标识来获取的
+         我的服务器开放了/public/目录
+         所以这里的请求路径都写成 : /public/xxx
+         / 在这里就是url根路径的意思
+         浏览器在真正发请求的时候会自动把http://127.0.0.1:3000拼上
+
+         不要再想文件路径了，把所以的路径都想象成url地址
+      -->
+    <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.css">
 </head>
 
 <body>
+    <div class="header container">
+        <div class="page-header">
+            <h1>Example page header <small>Subtext for header</small></h1>
+            <a href="/post" class="btn btn-success">发表留言</a>
+        </div>
+    </div>
+    <div class="comments container">
+        <ul class="list-group">
+            <li class="list-group-item">
+                123456
+                <span class="pull-right">12314123</span>
+            </li>
+        </ul>
+    </div>
 </body>
 
 </html>
