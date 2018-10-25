@@ -121,3 +121,20 @@ http
     .listen(3000, function () {
         console.log('running...')
     })
+
+    // 1. / index.html
+    // 2. 开放public目录中的静态资源
+    //    当请求 /public/xxx的时候，读取响应public目录中的具体资源
+    // 3. /post post.html
+    // 4. /pinglun 
+    //      4.1接受表单提交数据
+    //      4.2存储表单提交的数据
+    //      4.3让表单重定向到/
+    //          statusCode
+    //          setHeader
+
+    // 明天:
+    // 模块系统
+    // Express(第三方Web开发框架)
+    //      这两天做的事儿,在框架里面就是一个API的事儿
+    //      使用框架的目的就是让我们更加专注于业务，而不是底层细节
