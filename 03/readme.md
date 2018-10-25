@@ -161,3 +161,78 @@ exports.foo = 'bar'
 //等价于
 module.exports.foo = 'bar'
 ```
+
+## 上午总结
+
+- jQuery 的each和原生的JavaScript方法 forEach
+    - EcmaScript 5 提供的
+        - 不兼容IE8
+    - jQuery的each由jQuery这个第三方库提供
+        - jQuery2以下的版本是兼容IE8的
+        - 它的each方法主要是用来遍历jQuery实例对象(伪数组)
+        - 同时它也可以作为低版本浏览器中 forEach 替代品
+        - jQuery实例对象不能使用forEach方法,如果想要使用必须转为数组才可以使用
+        - `[].slice.call(jQuery实例对象)`
+
+```javascript
+Array.prototype.mySlice = function(){
+    var start = 0
+    var end = this.length
+    if(arguments.length === 1){
+        start = arguments[0]
+    }else if(arguments.length === 2){
+        start = arguments[0]
+        end = arguments[1]
+    }
+    var tmp = []
+    for(var i = start;i<end;i++){
+        // fakeArr[0]
+        // fakeArr[1]
+        // fakeArr[2]
+        tmp.push(this[i])
+    }
+    return tmp;
+}
+va fakeArr = {
+    0:'abc',
+    1:'efg',
+    2:'haha',
+    length:3
+}
+
+//所以你就得到了真正的数组.
+[].mySlice.call(fakeArr)
+```
+- 模块中导出多个成员和导出单个成员
+- 301和302状态码区别
+    - 301永久重定向,浏览器会记住
+    - 302临时重定向
+- exports和module.exports的区别
+    - 每个模块中都有一个module对象
+    - module对象中有一个exports对象
+    - 我们可以把需要导出的成员都挂载到module.exports接口对象中
+    - 也就是:`module.exports.xxx = xxx`的方式
+    - 但是每次都`module.exports.xxx = xxx`很麻烦,点儿的太多了
+    - 所以Node为了你方便,同时在每一个模块中都提供了一个成员叫:`exports`
+    - `exports === module.exports`结果为`true`
+    - 所以对于:`module.exports.xxx = xxx`的方式 完全可以:`exports.xxx = xxx`
+    - 当一个模块需要导出单个成员的时候,这个时候必须使用:`module.exports = xxx`的方式
+    - 不要使用`exports = xxx`不管用
+    - 因为每个模块最终向外`return`的是`module.exports`
+    - 而`exports`只是`module.exports`的一个引用
+    - 所以即便你为`exports = xx`重新赋值,也不会影响`module.exports`
+    - 但是有一种赋值方式比较特殊:`exports = module.exports`这个用来重新建立引用关系的
+    - 之所以让大家明白这个道理，是希望可以更灵活的去用它
+- Node是一个比肩Java、PHP的一个平台
+    - JavaScript既能写前端也能写服务端
+
+```javascript
+module.exports = {
+    a:123
+}
+
+//重新建立exports和module.exports之间的引用关系
+exports = module.exports
+
+exports.foo = 'bar'
+```
