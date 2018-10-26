@@ -20,17 +20,52 @@ app.use('/public/', express.static('./public'))
 
 // 如果想要修改默认的views目录，则可以:
 // app.set('views',render函数的默认路径)
-app.get('/', function (req, res) {
-    res.render('404.html')
-})
 
-app.get('/admin', function (req, res) {
-    res.render('admin/index.html',{
-        title:'管理系统'
+var comments = [
+    {
+        name: '张三',
+        message: '今天天气不错',
+        dateTime: '2015-10-16'
+    },
+    {
+        name: '张三2',
+        message: '今天天气不错',
+        dateTime: '2015-10-16'
+    },
+    {
+        name: '张三3',
+        message: '今天天气不错',
+        dateTime: '2015-10-16'
+    },
+    {
+        name: '张三4',
+        message: '今天天气不错',
+        dateTime: '2015-10-16'
+    },
+    {
+        name: '张三5',
+        message: '今天天气不错',
+        dateTime: '2015-10-16'
+    }
+]
+app.get('/', function (req, res) {
+    res.render('index.html',{
+        comments:comments
     })
 })
+
+
 app.get('/post', function (req, res) {
-    res.send('post page')
+    res.render('post.html')
+})
+
+app.get('/pinglun',function(req,res){
+    var comment = req.query;
+    comment.dateTime = '2017-11-5 10:58:51';
+    comments.unshift(comment);
+    res.redirect('/')
+    /* res.statusCode = 302;
+    res.setHeader('Location','/') */
 })
 app.listen(3000, function () {
     console.log('running...')
