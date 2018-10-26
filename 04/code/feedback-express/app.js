@@ -1,5 +1,5 @@
 var express = require('express');
-
+var bodyParser = require('body-parser')
 var app = express();
 
 // 配置使用art-template模板引擎
@@ -9,6 +9,8 @@ var app = express();
 // 原因就在于express-art-template依赖了art-template
 
 app.engine('html', require('express-art-template'));
+
+
 
 app.use('/public/', express.static('./public'))
 
@@ -21,6 +23,12 @@ app.use('/public/', express.static('./public'))
 // 如果想要修改默认的views目录，则可以:
 // app.set('views',render函数的默认路径)
 
+
+// 配置body-parser中间件(插件,专门用来解析表单POST请求体)
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 var comments = [
     {
         name: '张三',
@@ -49,8 +57,8 @@ var comments = [
     }
 ]
 app.get('/', function (req, res) {
-    res.render('index.html',{
-        comments:comments
+    res.render('index.html', {
+        comments: comments
     })
 })
 
@@ -58,15 +66,40 @@ app.get('/', function (req, res) {
 app.get('/post', function (req, res) {
     res.render('post.html')
 })
+// 当以POST请求/post的时候,执行指定的处理函数
+// 这样的话我们就可以利用不同的请求方法让一个请求路径使用多次
+app.post('/post', function (req, res) {
+    // console.log('收到表单post请求了')
+    // 1.获取表单POST请求体数据
+    // 2.处理
+    // 3.发送响应
 
-app.get('/pinglun',function(req,res){
+    // req.query只能拿get请求参数
+    // console.log(req.query);
+
+    // post
+    // res.send('post')
+    // console.log(req.body);
+    var comment = req.body;
+    comment.dateTime = '2017-11-5 10:58:51';
+    comments.unshift(comment);
+    // res.send
+    // res.redirect
+    // 这些方法Express会自动结束响应
+    res.redirect('/')
+    // res.statusCode = 302;
+    // res.setHeader('Location','/')
+})
+
+
+/* app.get('/pinglun',function(req,res){
     var comment = req.query;
     comment.dateTime = '2017-11-5 10:58:51';
     comments.unshift(comment);
     res.redirect('/')
-    /* res.statusCode = 302;
-    res.setHeader('Location','/') */
-})
+    // res.statusCode = 302;
+    // res.setHeader('Location','/')
+}) */
 app.listen(3000, function () {
     console.log('running...')
 })

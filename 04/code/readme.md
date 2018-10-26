@@ -99,3 +99,44 @@ app.post('/',function(req,res){
     //注意:第一个参数views千万不要写错
     app.set('views',目录路径)
   ```
+
+#### 在Express中获取表单GET请求参数
+Express内置了一个API，可以直接通过`req.query`来获取
+```javascript  
+    req.query
+```
+##### 在Express获取表单POST请求体数据
+
+在Express中没有内置获取表单POST请求体的API。这里我们需要使用一个第三方包:`body-parser`
+安装:
+```shell
+    npm install --save body-parser
+```
+配置:
+```javascript
+    var express = require('express')
+    // 0. 引包
+    var bodyParser = require('body-parser')
+
+    var app = express()
+
+    // 配置body-parser
+    // 只要加入这个配置,则在req请求对象上会多出来一个属性:body
+    // 也就是说你就可以直接通过req.body来获取表单POST请求体数据了
+    // parse application/x-www-form-urlencoded
+    app.use(bodyParser.urlencoded({ extended: false }))
+
+    // parse application/json
+    app.use(bodyParser.json())
+
+   
+```
+使用:
+```javascript
+    app.use(function (req, res) {
+    res.setHeader('Content-Type', 'text/plain')
+    res.write('you posted:\n')
+    // 可以通过req.body来获取表单post的数据
+    res.end(JSON.stringify(req.body, null, 2))
+    })
+```
