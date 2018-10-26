@@ -68,3 +68,34 @@ app.post('/',function(req,res){
 
     app.use('/static',express.static(path.join(__dirname,'public')))
 ```
+
+#### 在Express中配置使用`art-template`模板引擎
+
+- [art-template -GitHub仓库](https://github.com/aui/art-template)
+- [art-template -官方文档](https://aui.github.io/art-template/)
+  
+  安装
+  ```shell
+    npm install --save art-template
+    npm install --save express-art-template
+  ```
+  配置
+  ```javascript
+        app.engine('html', require('express-art-template'));
+  ```
+
+  使用
+  ```javascript
+    app.get('/',function(req,res){
+        //express默认会去项目中的views目录中找index.html
+        res.render('index.html',{
+            title:'hello world'
+        })
+    })
+
+  ```
+  如果希望修改默认的`views`视图渲染存储目录,可以:
+  ```javascript
+    //注意:第一个参数views千万不要写错
+    app.set('views',目录路径)
+  ```
