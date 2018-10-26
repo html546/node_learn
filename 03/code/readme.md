@@ -275,6 +275,40 @@ exports.foo = 'bar'
 ##### npm 网站
 - https://www.npmjs.com
 
+##### npm命令行工具
+- npm的第二层含义就是一个命令行工具,只要你安装了node就已经安装了npm。
+- npm也有版本这个概念
+- 可以通过在命令行中输入
+  `npm --version`
+- 升级npm(自己升级自己):
+  `npm install --global npm`
+
+#### 常用命令
+- npm init
+    - npm init -y 可以跳过向导,快速生成
+- npm install
+    - 一次性把dependencies选项中的依赖项全部安装
+    - npm i
+- npm install 包名
+    - 只下载
+    - npm i 包名
+- npm install --save 包名
+    - 下载并且保存依赖项(package.json文件中的dependencies选项)
+    - npm i -S 包名
+- npm uninstall 包名
+    - 只删除,如果有依赖项会依然保存
+    - npm un 包名
+- npm uninstall --save 包名
+    - 删除的同时也会把依赖信息也去除
+    - npm un -S 包名
+- npm help
+    - 查看使用帮助
+- npm 命令 --help
+    - 查看指定命令的使用帮助
+    - 例如我忘记了uninstall命令的简写了，这个时候，可以输入`npm uninstall --help`查看使用帮助。
+##### 解决npm被墙问题
+- npm存储包文件的服务器在国外,有时候会被墙,速度很慢.所以我们需要解决这个问题.
+    - http://npm.taobao.org/ 淘宝的开发团队把npm在国内做了一个备份.
 #### package.json
 - 我们建议每一个项目都要有一个`package.json`文件(包描述文件,就像产品的说明书一样),给人踏实的感觉.
 - 这个文件可以通过`npm init`的方式来自动初始化出来.
