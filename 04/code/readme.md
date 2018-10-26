@@ -140,3 +140,31 @@ Express内置了一个API，可以直接通过`req.query`来获取
     res.end(JSON.stringify(req.body, null, 2))
     })
 ```
+
+## 上午总结
+
+### 演讲
+
+> 说服
+> PPT
+> 脑图
+> markdown
+> 结构思维
+
+- 找痛点 why 为什么
+- 解决方案 what 是什么
+- 怎么去使用 how 怎么用
+- where 在哪儿用 
+- when 什么时候用
+
+- 文件路径中的`/`和模块标识中的`/`
+- nodemon
+- Express
+    - art-template 模板引擎的配置
+    - body-parser解析表单POST请求体
+- 技术只是一种解决问题的手段、工具而已
+    - 第三方的东西,不要纠结
+    - 先以解决问题为主
+- 讲解了express.static 静态服务API 
+    - app.use('/public/',express.static('./public'))
+- crud
