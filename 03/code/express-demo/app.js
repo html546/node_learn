@@ -10,9 +10,9 @@ var app = express()
 // 在Express中开放资源就是一个API的事儿
 // 公开指定目录
 // 只要这样做了，你就可以直接通过/public/xxx的方式访问public目录中的所有资源了
-app.use('/public/',express.static('./public/'))
-app.use('/static/',express.static('./static/'))
-app.use('/node_modules/',express.static('./node_modules/'))
+app.use('/public/', express.static('./public/'))
+app.use('/static/', express.static('./static/'))
+app.use('/node_modules/', express.static('./node_modules/'))
 
 // 模板引擎,在Express也是一个API的事儿
 
