@@ -344,3 +344,10 @@ exports.foo = 'bar'
 - 建议每个项目的根目录下都有一个`package.json`文件
 - 建议执行`npm install`包名的时候都加上`--save`这个选项,目的是用来保存依赖项信息.
 - 如果你的`node_modules`删除了也不用担心,我们只需要`npm install`就会自动把`package.json`中的`dependencies`中所有的依赖项都下载回来.
+
+### Express
+
+原生的http在某些方面表现不足以应对我们的开发需求.所以我们就需要使用框架来加快我们的开发效率.框架的目的就是提高效率,让我们的代码更高度统一.
+在Node中,有许多Web开发框架,我们这里以学习`express`为主.
+- http://expressjs.com
+- 作者:tj
