@@ -38,6 +38,10 @@ app.get('/', function (req, res) {
 // 以前的代码很丑
 
 app.get('/about', function (req, res) {
+    // 在Express中可以直接req.query来获取查询字符串参数
+    console.log(req.query);
+    // 在Express中使用模板引擎有更好的方式:res.render('文件名',{模板对象})
+    // 可以自己尝试去看art-template官方文档:如何让art-template结合Express使用
     res.send('你好,我是Express!');
 })
 

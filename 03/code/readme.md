@@ -351,3 +351,22 @@ exports.foo = 'bar'
 在Node中,有许多Web开发框架,我们这里以学习`express`为主.
 - http://expressjs.com
 - 作者:tj
+
+## 下午总结
+- jQuery的each和原生的Javascript方法forEach
+- 301和302的区别
+- 模块中导出单个成员和导出多个成员的方式
+- module.exports和exports的区别
+- require方法加载规则
+    - 优先从缓存加载
+    - 核心模块
+    - 路径形式的模块
+    - 第三方模块
+        - node_modules
+- package.json包描述文件
+    - dependencies选项的作用
+- npm 常用命令
+    - npm init
+    - npm install 包名...
+- Express基本使用
+- 使用Express把之前的留言本案例自己动手改造一下
