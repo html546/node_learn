@@ -309,6 +309,34 @@ exports.foo = 'bar'
 ##### 解决npm被墙问题
 - npm存储包文件的服务器在国外,有时候会被墙,速度很慢.所以我们需要解决这个问题.
     - http://npm.taobao.org/ 淘宝的开发团队把npm在国内做了一个备份.
+    - 安装淘宝的cnpm
+ ```javascript
+    # 在任意目录执行都可以
+    # --global 表示安装到全局,并非当前目录
+    # --global不能省略,否则不管用
+    npm install --global cnpm
+ ```
+ - 接下来你安装包的时候把之前的`npm`替换成`cnpm`
+ - 举个例子
+  ```javascript
+    # 这里还是走国外的npm服务器,速度比较慢
+    npm install jquery
+
+  # 使用cnpm就会通过淘宝的服务器来下载jquery
+  cnpm install jquery
+  ```
+  如果不想安装`cnpm`又想使用淘宝的服务器来下载
+  ```javascript
+  npm install jquery --registry=https://registry.npm.taobao.org
+  ```
+  但是每一次手动这样加参数很麻烦,所以我们可以把这个选项加入配置文件中.
+  ```javascript
+  npm config set registry https://registry.npm.taobao.org
+
+  # 查看npm配置信息
+  npm config list
+  ```
+  只要经过了上面命令的配置,则你以后所有的`npm install`都会默认通过淘宝的服务器来下载.
 #### package.json
 - 我们建议每一个项目都要有一个`package.json`文件(包描述文件,就像产品的说明书一样),给人踏实的感觉.
 - 这个文件可以通过`npm init`的方式来自动初始化出来.
