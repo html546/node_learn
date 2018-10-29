@@ -96,6 +96,7 @@ router.post('/students/new',function(req,res){
     // 然后往对象中push数据
     // 然后把对象转为字符串
     // 然后把字符串再次写入文件
+    console.log(req.body)
 })
 router.get('/students/edit',function(req,res){
 
