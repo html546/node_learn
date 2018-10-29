@@ -71,12 +71,25 @@ router.get('/students', function (req, res) {
 })
 
 router.get('/students/new',function(req,res){
-    res.send('new new new')
+    res.render('new.html')
 })
-router.get('/students/new',function(req,res){
+router.post('/students/new',function(req,res){
+    // 1.获取表单数据
+    // 2.处理
+    //      将数据保存到db.json文件中用以持久化
+    // 3.发送响应
+    // 先读取出来.转成对象
+    // 然后往对象中push数据
+    // 然后把对象转为字符串
+    // 然后把字符串再次写入文件
+})
+router.get('/students/edit',function(req,res){
 
 })
-router.get('/students/new',function(req,res){
+router.post('/students/edit',function(req,res){
+
+})
+router.get('/students/delete',function(req,res){
 
 })
 
