@@ -43,7 +43,11 @@ exports.save = function (student, callback) {
         var students = JSON.parse(data).students
 
         // 处理id唯一的,不重复
-        student.id = students[students.length - 1].id + 1
+        if(students.length){
+            student.id = students[students.length - 1].id + 1
+        }else{
+            student.id = 1
+        }
         // 把用户传递的对象保存到数组中
         students.push(student)
 

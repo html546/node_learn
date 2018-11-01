@@ -168,3 +168,40 @@ Express内置了一个API，可以直接通过`req.query`来获取
 - 讲解了express.static 静态服务API 
     - app.use('/public/',express.static('./public'))
 - crud
+### 模块化思想
+1. 模块如何划分
+    1. 模块职责要单一
+    2. Vue
+    3. angular
+    4. React
+    5. 全部
+    6. 也非常有利于学习前端三大框架
+
+#### 自己编写的步骤
+1. 处理模板
+2. 配置开放静态资源
+3. 配置模板引擎
+4. 简单路由,/students 渲染静态页出来
+5. 路由设计
+6. 提取路由模块
+7. 由于接下来一系列的业务操作都需要处理文件数据,所以我们需要封装student.js
+8. 先写好student.js文件结构
+    1. 查询所有学生列表的API find
+    2. findById
+    3. save
+    4. updateById
+    5. deleteById
+9. 实现具体功能
+    1.  通过路由收到请求
+    2.  接受请求中的数据(get、post)
+        1.  req.query
+        2.  req.body
+    3.  调用数据操作API处理数据
+    4.  根据操作结果给客户端发送响应
+10. 业务功能顺序
+    1.  列表
+    2.  添加
+    3.  编辑
+    4.  删除
+11. find
+12. findIndex
