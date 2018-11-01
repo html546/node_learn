@@ -2,9 +2,13 @@
  * Students.js
  * 数据操作文件模块
  * 职责:操作文件中的数据,只处理数据,不关心业务
+ * 
+ * 这里才是我们学习Node的精华部分:奥义所在
+ * 封装异步API
  */
 
 var fs = require('fs');
+
 var dbPath = './db.json'
 
 /**
@@ -48,7 +52,7 @@ exports.save = function (student,callback) {
             students:students
         })
         // 把字符串保存到文件中
-        fs.writeFile(dbPath.fileData,function(err){
+        fs.writeFile(dbPath,fileData,function(err){
             if(err){
                 // 错误就是把错误对象传递给它
                 return callback(err)

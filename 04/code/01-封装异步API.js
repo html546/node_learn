@@ -25,3 +25,23 @@ fn(function(data){
 })
 
 // 回调函数:获取异步操作的结果
+
+$.get('dasasdfas',function(data){
+
+})
+
+$.ajax({
+    url:'adfasdasd',
+    type:'get',
+    data:{
+        foo:'bar'
+    },
+    // 使用者只负责传递,封装者需要去调用
+    success:function(){
+
+    }
+})
+
+function ajax(options){
+    options.success(data)
+}
