@@ -212,3 +212,7 @@ exit
 ### 在Node中如何操作MongoDB数据
 
 #### 使用官方的`mongodb`包来操作
+    [文档](https://github.com/mongodb/node-mongodb-native)
+#### 使用第三方mongoose来操作MongoDB数据库
+第三方包:`mongoose`基于MongoDB官方的`mongodb`包再一次做了封装
+- 网址:https://mongoosejs.com/
