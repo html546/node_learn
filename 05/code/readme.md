@@ -142,3 +142,73 @@ npm5以后才加入了这个文件爱你
     - 安装
     - 配置环境变量
     - 最后输入`mongod --version`测试是否安装成功
+
+## 上午总结
+
+- 回调函数
+    - 异步编程
+    - 如果需要得到一个函数内部异步操作的结果，这个时候必须通过回调函数来获取
+    - 在调用的位置传递一个函数进来
+    - 在封装的函数内部调用传递进来的函数
+- find、findIndex、forEach
+    - 数组的遍历方法,都是对函数作为参数的一种运用
+    - every
+    - some
+    - includes 判断数组中是否包含指定的数据
+    - map
+    - reduce
+    ```javascript
+        数组的reduce方法
+    ```
+- package-lock.json文件的作用
+    - 下载速度快了
+    - 锁定版本
+- Javascript模块化
+    - Node 中的CommonJS
+    - 浏览器中的
+        - AMD require.js
+        - CMD sea.js
+    - EcmaScript官方在EcmaScript 6 中增加了官方支持
+    - EcmaScript 6
+- MongoDB数据库
+
+### 启动和关闭数据库
+启动:
+```shell
+# mongodb默认使用执行mongodb命令所处盘符根目录下的/data/db作为自己的数据存储目录
+# 所以在第一次执行该命令之前先自己手动新建一个/data/db
+mongod
+```
+如果想要修改默认的数据存储目录.可以:
+```shell
+mongod --dbpath=数据存储目录路径
+```
+停止:
+```shell
+在开启服务的控制台,直接Ctrl+c即可停止
+或者直接关闭开启服务的控制台也可以
+```
+
+### 连接和退出数据库
+连接:
+```shell
+# 该命令默认连接本机的MongoDB服务
+mongo
+```
+退出:
+```shell
+# 在连接状态输入exit退出连接
+exit
+```
+### 基本命令
+- `show dbs`
+    - 查看数据库列表
+- `db`
+    - 查看当前操作的数据库
+- `use`数据库名称
+    - 切换到制定的数据库.(如果没有会新建)
+- 插入数据
+
+### 在Node中如何操作MongoDB数据
+
+#### 使用官方的`mongodb`包来操作
