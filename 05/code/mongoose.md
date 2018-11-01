@@ -3,6 +3,38 @@
 - 官网:https://mongoosejs.com/
 - 官方指南:https://mongoosejs.com/docs/guide.html
 - 官方API文档:https://mongoosejs.com/docs/api.html
+##### MongoDB数据库的基本概念
+- 可以有多个数据库
+- 一个数据库中可以有多个集合(表)
+- 一个集合中可以有多个文档(表记录)
+- 文档结构很灵活,没有任何限制
+- MongoDB非常灵活,不需要像MySql一样先创建数据库、表、设计表结构
+    - 在这里只需要,当你需要插入数据的时候,只需要指定往哪个数据库的哪个集合操作就可以了
+    - 一切都由MongoDB来帮你自动完成建库建表这件事儿
+  ```javascript
+  {
+      qq:{
+        users:[
+            {name:'张三',age:15},
+            {name:'李四',age:15},
+            {name:'王五',age:15},
+            {name:'张三123',age:15},
+            {name:'张三321',age:18},
+            ...
+        ],
+        products:[
+
+        ],
+        ...
+      },
+      taobao:{
+
+      },
+      baidu:{
+
+      }
+  }
+  ```
 
 1. 起步
 
