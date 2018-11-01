@@ -85,9 +85,16 @@ router.get('/students', function (req, res) {
     })
 })
 
+/**
+ * 渲染添加学生页面
+ */
 router.get('/students/new', function (req, res) {
     res.render('new.html')
 })
+
+/**
+ * 处理添加学生
+ */
 router.post('/students/new', function (req, res) {
     // 1.获取表单数据
     // 2.处理
@@ -132,8 +139,19 @@ router.get('/students/edit', function (req, res) {
  * 处理编辑学生
  */
 router.post('/students/edit', function (req, res) {
-
+    // 1.获取表单数据
+    //   req.body
+    // 2.更新
+    //   Student.updateById()
+    // 3.发送响应
+    Student.updateById(req.body,function(err){
+        if(err){
+            return res.status(500).send('Server error.')
+        }
+        res.redirect('/students')
+    })
 })
+
 router.get('/students/delete', function (req, res) {
 
 })

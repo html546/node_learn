@@ -86,7 +86,7 @@ exports.findById = function (id, callback) {
         }
         var students = JSON.parse(data).students;
         var ret = students.find(function (item) {
-            return item.id === id;
+            return item.id === parseInt(id);
         })
         callback(null, ret)
     })
@@ -101,6 +101,9 @@ exports.updateById = function (student, callback) {
             return callback(err);
         }
         var students = JSON.parse(data).students
+
+        // 注意:这里记得把 id 统一转换为数字类型
+        student.id = parseInt(studnet.id)
 
         // 你要修改谁,就需要把谁找出来
         // EcmaScript 6 中的一个数组方法:find

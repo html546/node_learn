@@ -72,7 +72,11 @@
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h2 class="sub-header">添加学生</h2>
-                <form action="/students/new" method="post">
+                <form action="/students/edit" method="post">
+                    <input type="hidden" value="{{student.id}}" name="id">
+                    <!-- 
+                        用来放一些不希望被用户看见,但是需要被提交到服务端的数据
+                     -->
                     <div class="form-group">
                         <label for="">姓名</label>
                         <input type="text" name="name" class="form-control" id="" placeholder="Email" value="{{student.name}}">
