@@ -23,37 +23,37 @@ var dbPath = './db.json'
  * return []
  */
 exports.find = function (callback) {
-    fs.readFile(dbPath,'utf8', function (err, data) {
-        if(err){
+    fs.readFile(dbPath, 'utf8', function (err, data) {
+        if (err) {
             return callback(err)
-        }            
-        callback(null,JSON.parse(data).students)
+        }
+        callback(null, JSON.parse(data).students)
     })
 }
 
 /**
  * 添加保存学生
  */
-exports.save = function (student,callback) {
-    fs.readFile(dbPath,'utf8', function (err, data) {
-        if(err){
+exports.save = function (student, callback) {
+    fs.readFile(dbPath, 'utf8', function (err, data) {
+        if (err) {
             return callback(err)
-        }            
+        }
 
         var students = JSON.parse(data).students
 
         // 处理id唯一的,不重复
-        student.id = students[students.length-1].id+1
+        student.id = students[students.length - 1].id + 1
         // 把用户传递的对象保存到数组中
         students.push(student)
 
         // 把对象数据转换为字符串
         var fileData = JSON.stringify({
-            students:students
+            students: students
         })
         // 把字符串保存到文件中
-        fs.writeFile(dbPath,fileData,function(err){
-            if(err){
+        fs.writeFile(dbPath, fileData, function (err) {
+            if (err) {
                 // 错误就是把错误对象传递给它
                 return callback(err)
             }
@@ -75,11 +75,69 @@ exports.save = function (student,callback) {
 }) */
 
 /**
+ * 根据id获取学生信息对象
+ * @param {Number}  | id        学生id
+ * @param {Function}| callback  回调函数
+ */
+exports.findById = function (id, callback) {
+    fs.readFile(dbPath, 'utf8', function (err, data) {
+        if (err) {
+            return callback(err)
+        }
+        var students = JSON.parse(data).students;
+        var ret = students.find(function (item) {
+            return item.id === id;
+        })
+        callback(null, ret)
+    })
+}
+
+/**
  * 更新学生
  */
-exports.update = function () {
+exports.updateById = function (student, callback) {
+    fs.readFile(dbPath, 'utf8', function (err, data) {
+        if (err) {
+            return callback(err);
+        }
+        var students = JSON.parse(data).students
 
+        // 你要修改谁,就需要把谁找出来
+        // EcmaScript 6 中的一个数组方法:find
+        // 需要接收一个函数作为参数
+        // 当某个遍历项符合 item.id === student.id条件的时候,find会终止遍历,同时返回遍历项
+        var stu = students.find(function (item) {
+            return item.id === student.id
+        })
+        // 遍历拷贝对象
+        for (var key in student) {
+            stu[key] = student[key]
+        }
+
+        // 把对象数据转换为字符串
+        var fileData = JSON.stringify({
+            students: students
+        })
+
+        // 把字符串保存到文件中
+        fs.writeFile(dbPath, fileData, function (err) {
+            if (err) {
+                // 错误就是把错误对象传递给它
+                return callback(err)
+            }
+            // 成功就没错,所以错误对象是null
+            callback(null)
+        })
+    })
 }
+
+/* updateById({
+    id:1,
+    name:'xx',
+    age:15
+},function(err){
+
+}) */
 
 /**
  * 删除学生

@@ -10,6 +10,7 @@
 var fs = require('fs');
 var Student = require('./students')
 
+
 // 这样也不方便
 /* module.exports = function(app){
     app.get('/students', function (req, res) {
@@ -69,7 +70,7 @@ router.get('/students', function (req, res) {
             students: students
         })
     }) */
-    Student.find(function(err,students){
+    Student.find(function (err, students) {
         if (err) {
             return res.status(500).send('Server error.')
         }
@@ -84,10 +85,10 @@ router.get('/students', function (req, res) {
     })
 })
 
-router.get('/students/new',function(req,res){
+router.get('/students/new', function (req, res) {
     res.render('new.html')
 })
-router.post('/students/new',function(req,res){
+router.post('/students/new', function (req, res) {
     // 1.获取表单数据
     // 2.处理
     //      将数据保存到db.json文件中用以持久化
@@ -98,20 +99,42 @@ router.post('/students/new',function(req,res){
     // 然后把字符串再次写入文件
     // console.log(req.body);
     var student = req.body;
-    Student.save(req.body,function(err){
-        if(err){
+    Student.save(req.body, function (err) {
+        if (err) {
             return res.status(500).send('Server error.')
         }
         res.redirect('/students')
     })
 })
-router.get('/students/edit',function(req,res){
+
+/**
+ * 渲染编辑学生页面
+ */
+router.get('/students/edit', function (req, res) {
+    // 1.在客户端的列表页中处理链接问题(需要有id参数)
+    // 2.获取要编辑的学生id
+    // 
+    // 3.渲染编辑页面
+    //  根据id把学生信息查出来
+    //  使用模板引擎渲染页面
+
+    Student.findById(parseInt(req.query.id), function (err, student) {
+        if (err) {
+            return res.status(500).send('Server error.')
+        }
+        res.render('edit.html', {
+            student:student
+        })
+    })
+})
+
+/**
+ * 处理编辑学生
+ */
+router.post('/students/edit', function (req, res) {
 
 })
-router.post('/students/edit',function(req,res){
-
-})
-router.get('/students/delete',function(req,res){
+router.get('/students/delete', function (req, res) {
 
 })
 
