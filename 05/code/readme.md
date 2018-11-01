@@ -62,3 +62,4 @@ add(10, 20, function (ret) {
     console.log(ret)
 })
 ```
+#### 基于原生XMLHTTPReaquest ajax方法

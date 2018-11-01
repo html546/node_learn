@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // setTimeout
+        // readFile
+        // writeFile
+        // readdir
+        // ajax
+        // 往往异步API都伴有一个回调函数
+        // var ret = fn()
+        // $.get('dadas',function(){})
+
+
+        function get(url, callback) {
+            var oReq = new XMLHttpRequest()
+            // 当请求加载成功之后要调用制定的函数
+            oReq.onload = function () {
+                // 我现在需要得到这里的oReq.responseText
+                // console.log(oReq.responseText)
+                callback(oReq.responseText)
+            }
+            oReq.open('get', url, true)
+            oReq.send()
+        }
+
+        get('data.json', function (data) {
+            console.log(data)
+        })
+    </script>
+</body>
+
+</html>
