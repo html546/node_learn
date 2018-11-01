@@ -153,7 +153,16 @@ router.post('/students/edit', function (req, res) {
 })
 
 router.get('/students/delete', function (req, res) {
-
+    // 1.获取要删除的id
+    // 2.根据id执行删除操作
+    // 3.根据操作结果发送响应数据
+    // console.log(req.query.id);
+    Student.deleteById(req.query.id,function(err){
+        if(err){
+            return res.status(500).send('Server error.')
+        }
+        res.redirect('/students')
+    })
 })
 
 // 3.把router导出

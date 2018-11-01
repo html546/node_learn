@@ -103,7 +103,7 @@ exports.updateById = function (student, callback) {
         var students = JSON.parse(data).students
 
         // 注意:这里记得把 id 统一转换为数字类型
-        student.id = parseInt(studnet.id)
+        student.id = parseInt(student.id)
 
         // 你要修改谁,就需要把谁找出来
         // EcmaScript 6 中的一个数组方法:find
@@ -145,6 +145,33 @@ exports.updateById = function (student, callback) {
 /**
  * 删除学生
  */
-exports.delete = function () {
+exports.deleteById = function (id, callback) {
+    fs.readFile(dbPath, 'utf8', function (err, data) {
+        if (err) {
+            return callback(err)
+        }
+        var students = JSON.parse(data).students
 
+        // findIndex 方法专门用来根据条件查找元素的下标
+        var deleteId = students.findIndex(function (item) {
+            return item.id === parseInt(id)
+        })
+        // 根据下标从数组中删除对应的学生对象
+        students.splice(deleteId, 1)
+
+        // 把对象数据转换为字符串
+        var fileData = JSON.stringify({
+            students: students
+        })
+
+        // 把字符串保存到文件中
+        fs.writeFile(dbPath, fileData, function (err) {
+            if (err) {
+                // 错误就是把错误对象传递给它
+                return callback(err)
+            }
+            // 成功就没错,所以错误对象是null
+            callback(null)
+        })
+    })
 }
