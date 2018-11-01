@@ -91,3 +91,28 @@ add(10, 20, function (ret) {
     - EcmaScript 6 -> 编译器 -> EcmaScript 5
     - 目前的前端情况都是使用很多新技术,然后利用编译器工具打包可以在低版本浏览器运行.
     - 使用新技术的目的就是为了提高效率,增加可维护性
+- 这里涉及到一个中间件的概念
+    - app.use不仅仅是用来处理静态资源的
+    - 还可以做很多工作
+    - 配置bory-parse也是通过app.use来配置的
+    - 这叫中间件,其中有一套规则
+- 当你安装包的时候,新版的npm还会自动生成一个文件:package-lock.json
+
+
+### package.json和package-lock.json
+
+npm5以前是不会有`package-lock.json`这个文件的
+npm5以后才加入了这个文件爱你
+当你安装包的时候，npm都会生成或者更新`package-lock.json`这个文件
+
+- npm5以后的版本的安装包不需要加`--save`参数,它会自动保存依赖信息
+- 当你安装包的时候,会自动创建或者是更新`package-lock.json`这个文件
+- `package-lock.json`这个文件会保存`node_modules`中所有包的信息(版本、下载地址)
+    - 这样的话重新`npm install` 速度就可以提升
+- 从文件来看,有一个`lock`称之为锁
+    - 这个`lock`是用来锁定版本的
+    - 如果项目依赖了`1.1.1`版本
+    - 如果你重新install其实会下载最新版本,而不是1.1.1
+    - 我们的目的就是希望可以锁住1.1.1这个版本
+    - 所以这个`package-lock.json`这个文件的另一个作用就是锁定版本号,防止自动升级版本
+- EcmaScript6中的find方法
