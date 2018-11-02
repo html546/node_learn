@@ -37,7 +37,7 @@ var User = mongoose.model('User', userSchema)
 
 // 4.当我们有了模型构造函数之后，就可以使用这个构造函数对users中的数据为所欲为了(增删改查)
 var admin = new User({
-    username: 'zs',
+    username: 'admin',
     password: '123456',
     email: 'admin@admin.com'
 })
@@ -107,4 +107,12 @@ var admin = new User({
  /**
   * 更新数据
   */
- 
+/*  User.findByIdAndUpdate('5bdb978176b09d1afc77cb1a',{
+     password:'123'
+ },function(err,ret){
+     if(err){
+         console.log('更新失败')
+     }else{
+         console.log('更新成功')
+     }
+ }) */
