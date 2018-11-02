@@ -216,3 +216,19 @@ exit
 #### 使用第三方mongoose来操作MongoDB数据库
 第三方包:`mongoose`基于MongoDB官方的`mongodb`包再一次做了封装
 - 网址:https://mongoosejs.com/
+
+- MongoDB 数据库
+    - MongoDB的数据存储结构
+        - 数据库
+        - 集合(表)
+        - 文档(表记录)
+- MongoDB官方有一个mongodb的包可以用来操作MongoDB数据库
+    - 这个确实很强大,但是比较原始,麻烦,所以我们不使用它
+- Mongoose
+    - 真正在公司进行开发,使用的是mongoose这个第三方包
+    - 它是基于MongoDB官方的mongodb包进一步做了封装
+    - 可以提高开发效率
+    - 让你操作MongoDB数据库更方便
+- 掌握使用mongoose对数据集合进行基本的CRUD
+- 把之前的crud案例改为了MongoDB数据库版本
+- 使用Node操作mysql数据库
