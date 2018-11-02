@@ -373,3 +373,7 @@ preadFile('./data/a.txt')
         console.log(data)
     })
 ```
+
+### Promise
+
+> 参考文档:http://es6.ruanyifeng.com/#docs/promise
