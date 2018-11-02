@@ -173,3 +173,34 @@ User.remove({
     }
  })
 ```
+根据条件删除一个:
+```javascript
+Model.findOneAndRemove(conditions,[options],[callback])
+```
+根据id删除一个:
+```javascript
+Model.findByIdAndRemove(id,[options],[callback])
+```
+
+#### 更新数据
+根据条件更新所有:
+```javascript
+Model.update(condition,doc,[options],[callback])
+```
+根据指定条件更新一个:
+```javascript
+Model.findOneAndUpdate([conditions],[update],[options],[callback])
+```
+根据id更新一个:
+```javascript
+User.findByIdAndUpdate('5bdb978176b09d1afc77cb1a',{
+     password:'123'
+ },function(err,ret){
+     if(err){
+         console.log('更新失败')
+     }else{
+         console.log('更新成功')
+     }
+ }) 
+```
+
