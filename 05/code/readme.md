@@ -377,3 +377,37 @@ preadFile('./data/a.txt')
 ### Promise
 
 > 参考文档:http://es6.ruanyifeng.com/#docs/promise
+
+## 反馈
+
+## 复习
+
+- MongoDB数据库
+    - 灵活
+    - 不用设计数据表
+    - 业务的改动不需要关心数据表结构
+    - DBA架构师 级别的工程师都需要掌握这项技能
+        - 设计
+        - 维护
+        - 分布式计算
+- mongoose
+    - mongodb 官方包也可以操作MongoDB数据库
+    - 第三方包:wordPress 项目开发团队
+    - 设计 Schema
+    - 发布Model(得到模型构造函数)
+        - 查询
+        - 增加
+        - 修改
+        - 删除
+- Promise
+    - http://es6.ruanyifeng.com/#docs/promise
+    - callback hell回调地狱
+    - 回调函数中套了回调函数
+    - Promise(EcmaScript 6中新增了一个语法API)
+    - 容器
+        - 异步任务(pending)
+        - resolve
+        - reject
+    - then 方法获取容器的结果(成功的,失败的)
+    - then方法支持链式调用
+    - 可以在then方法中返回一个promise对象,然后在后面的then方法中获取上一个then返回的promise对象的结果
