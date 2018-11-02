@@ -23,3 +23,5 @@ preadFile('./data/a.txt')
     .then(function (data) {
         console.log(data)
     })
+
+// 
