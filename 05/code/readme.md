@@ -232,3 +232,144 @@ exit
 - 掌握使用mongoose对数据集合进行基本的CRUD
 - 把之前的crud案例改为了MongoDB数据库版本
 - 使用Node操作mysql数据库
+
+## Promise
+
+callback hell:
+无法保证顺序的代码
+```javascript
+var fs = require('fs')
+
+fs.readFile('./data/a.txt', 'utf8', function (err, data) {
+    if (err) {
+        // return console.log('读取失败')
+        // 抛出异常
+        //  1.阻止程序的执行
+        //  2.把错误消息打印到控制台
+        throw err
+    }
+    console.log(data)
+})
+
+fs.readFile('./data/b.txt', 'utf8', function (err, data) {
+    if (err) {
+        // return console.log('读取失败')
+        // 抛出异常
+        //  1.阻止程序的执行
+        //  2.把错误消息打印到控制台
+        throw err
+    }
+    console.log(data)
+})
+
+fs.readFile('./data/c.txt', 'utf8', function (err, data) {
+    if (err) {
+        // return console.log('读取失败')
+        // 抛出异常
+        //  1.阻止程序的执行
+        //  2.把错误消息打印到控制台
+        throw err
+    }
+    console.log(data)
+})
+
+```
+通过回调嵌套的方式来保证顺序
+```javascript
+var fs = require('fs')
+
+fs.readFile('./data/a.txt', 'utf8', function (err, data) {
+    if (err) {
+        throw err
+    }
+    console.log(data)
+    fs.readFile('./data/b.txt', 'utf8', function (err, data) {
+        if (err) {
+            throw err
+        }
+        console.log(data)
+        fs.readFile('./data/c.txt', 'utf8', function (err, data) {
+            if (err) {
+                throw err
+            }
+            console.log(data)
+        })
+    })
+})
+```
+为了解决以上编码方式带来的问题(回调地狱嵌套),所以EcmaScript6中新增了一个API,`Promise`.
+- Promise的英文就是承诺、保证的意思(I promise you)
+- Promise本身不是异步,但是内部往往都是封装一个异步
+
+Promise基本语法:
+```javascript
+var fs = require('fs')
+
+// 在EcmaScript6中新增了一个API Promise
+// Promise是一个构造函数
+// console.log(1)
+// 创建Promise容器
+// 1.给别人一个承诺 I promise you.
+//   Promise容器一旦创建,就开始执行里面的代码
+var p1 = new Promise(function (resolve, reject) {
+    // console.log(2)
+    fs.readFile('./data/aa.txt', 'utf8', function (err, data) {
+        if (err) {
+            // 失败了,承诺容器中的任务失败了
+            // console.log(err)
+            // 把容器的Pending状态变为Rejected
+
+            // 调用reject就相当于调用了then方法的第二个参数函数
+            reject(err)
+        } else {
+            // console.log(3)
+            // 承诺容器中的任务成功了
+            // console.log(data)
+            // 把容器的Pending状态变为Resolved
+            // 也就是说这里调用的resolve方法实际上就是then方法传递的那个function
+            resolve(data)
+        }
+    })
+})
+
+// console.log(4)
+
+// p1就是那个承诺
+// 当p1成功了 然后 (then) 做指定的操作
+// then方法接收的function就是容器中的resolve函数
+p1
+    .then((data) => {
+        console.log(data)
+    }).catch((err) => {
+        console.log('读取文件失败了', err)
+    })
+```
+
+封装Promise版本的`readFile` 
+```javascript
+var fs = require('fs')
+
+function preadFile(filePath) {
+    return new Promise(function (resolve, reject) {
+        fs.readFile(filePath, 'utf8', function (err, data) {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(data)
+            }
+        })
+    })
+}
+preadFile('./data/a.txt')
+    .then(function (data) {
+        console.log(data)
+        return preadFile('./data/b.txt')
+    })
+    .then(function (data) {
+        console.log(data)
+        return preadFile('./data/c.txt')
+    })
+    .then(function (data) {
+        console.log(data)
+    })
+```
